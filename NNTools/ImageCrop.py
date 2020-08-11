@@ -10,14 +10,11 @@ import time
 import random
 
 #配置信息
-# anno_file=r"C:\Users\Administrator\Desktop\gened_data\label"
+
 img_file=r"C:\Users\Administrator\Desktop\test500\img500"
 save_path=r"C:\Users\Administrator\Desktop\test500"
 label_txt=r'C:\Users\Administrator\Desktop\test500\500_label.txt'
-# anno_file=r"C:\Users\李梓桦\Desktop\test_data\label"
-# img_file=r"C:\Users\李梓桦\Desktop\test_data\img"
-# save_path=r"C:\Users\李梓桦\Desktop\test_data"
-# label_txt=r'C:\Users\李梓桦\Desktop\test_data\label.txt'
+
 
 face_size=[12,24,48]
 # face_size=[48]
