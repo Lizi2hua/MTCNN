@@ -1,3 +1,1 @@
-# MTCNN
-# MTCNN
-# MTCNN
+使用前先在`main.py`的目录下创建`test_Imgs`文件夹，并将图片放在该文件夹下。
