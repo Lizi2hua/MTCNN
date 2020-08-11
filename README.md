@@ -16,5 +16,5 @@
 
 5.使用的结果
 
-**![image-20200811220042998](../../AppData/Roaming/Typora/typora-user-images/image-20200811220042998.png)**
+**![结果](https://github.com/Lizi2hua/MTCNN/blob/master/test_Imgs/u%3D123579553%2C2548320036%26fm%3D26%26gp%3D0.jpg)**
 
