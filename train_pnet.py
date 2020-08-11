@@ -1,5 +1,5 @@
-from train import Trainer
-from net import PNet
+from core.train import Trainer
+from core.net import PNet
 if __name__ == '__main__':
     save_path="saved_models/pnet.pt"
     dataset_path=r"C:\gened_data\12"

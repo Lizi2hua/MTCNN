@@ -1,5 +1,5 @@
-from train import Trainer
-from net import ONet
+from core.train import Trainer
+from core.net import ONet
 if __name__ == '__main__':
     save_path="saved_models/onet.pt"
     dataset_path=r"C:\gened_data\48"
