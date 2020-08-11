@@ -16,5 +16,5 @@
 
 5.使用的结果
 
-**![结果](https://github.com/Lizi2hua/MTCNN/blob/master/test_Imgs/u%3D123579553%2C2548320036%26fm%3D26%26gp%3D0.jpg)**
+**![结果](https://github.com/Lizi2hua/MTCNN/blob/master/test_Imgs/1597154430(1).png)**
 
