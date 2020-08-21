@@ -1,5 +1,5 @@
 from core import detector
-from core import opt_detector
+from core import old_detector
 import os
 from PIL import  Image
 from NNTools.draw_rectangle import draw_rect

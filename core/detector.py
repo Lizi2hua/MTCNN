@@ -73,14 +73,15 @@ class Detector:
             # print(cf[:, idxs[:,0]])
             # print(cf[:, idxs[:,1]])
             boxess=self.__box(idxs,offset,cf[idxs[:,0],idxs[:,1]],scale)
-            print(boxess)
-            exit()
+            boxes=torch.cat((boxes,boxess),dim=0)
+            # print(boxes)
+            # exit()
             # for idx in idxs:
                 # boxes.append(self.__box(idx, offset, cf[idx[0], idx[1]], scale))  # 坐标反算回原图
 
 
             # 缩放图片
-            scale *= 0.7
+            scale *= 0.709
             _w = int(w * scale)
             _h = int(h * scale)
             img = img.resize((_w, _h))
@@ -223,7 +224,7 @@ class Detector:
         x2 = _x2 + ow * _offset[2]
         y2 = _y2 + oh * _offset[3]
 
-        return [cf, x1, y1, x2, y2]  # NMS输入的形状如此
+        return torch.stack((cf, x1, y1, x2, y2),dim=1)  # NMS输入的形状如此
 
     # 由于R,O网络输入必须是矩形，倘若简单的使用resize，会破坏原图的特征。可以将pnet输出的框扩张为正方形
     def convert_to_square(self, bbox):
