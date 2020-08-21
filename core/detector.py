@@ -45,7 +45,7 @@ class Detector:
 
     # pnet检测函数
     def __p_detect(self, image):
-        boxes = []
+        boxes =torch.tensor([])
         img = image
         w, h = img.size
         # 以最小边长为图像金字塔结束的判定条件
@@ -66,8 +66,18 @@ class Detector:
             offset = _offset[0].cpu().detach()  # 分组卷积，偏移量，输出：[N,4,h,w],变为了[4,H,W]
             idxs = torch.nonzero(torch.gt(cf, p_cf), as_tuple=False)  # 网络输出的置信度与阈值比较，得到bool列表，最后得到索引
             # 由于pnet的输出的框太多，不适合用for循环
-            for idx in idxs:
-                boxes.append(self.__box(idx, offset, cf[idx[0], idx[1]], scale))  # 坐标反算回原图
+
+            # print(cf)
+            # print(idxs[:,0])
+            # print(idxs[:,1])
+            # print(cf[:, idxs[:,0]])
+            # print(cf[:, idxs[:,1]])
+            boxess=self.__box(idxs,offset,cf[idxs[:,0],idxs[:,1]],scale)
+            print(boxess)
+            exit()
+            # for idx in idxs:
+                # boxes.append(self.__box(idx, offset, cf[idx[0], idx[1]], scale))  # 坐标反算回原图
+
 
             # 缩放图片
             scale *= 0.7
@@ -199,15 +209,15 @@ class Detector:
         bottony=indexy*stride+ksizey-1
         """
         # 反算到原图上的候选区域坐标
-        _x1 = (start_index[1].float() * stride) / scale
-        _y1 = (start_index[0].float() * stride) / scale
-        _x2 = (start_index[1].float() * stride + side_len) / scale - 1
-        _y2 = (start_index[0].float() * stride + side_len) / scale - 1
+        _x1 = (start_index[:,1].float() * stride) / scale
+        _y1 = (start_index[:,0].float() * stride) / scale
+        _x2 = (start_index[:,1].float() * stride + side_len) / scale - 1
+        _y2 = (start_index[:,0].float() * stride + side_len) / scale - 1
 
         oh = ow = side_len / scale  # 这样算更精确
         # 计算映射回原图的候选区域
         # 得到实际框相对于候选区域的偏移量
-        _offset = offset[:, start_index[0], start_index[1]]  # [4,H,W]
+        _offset = offset[:, start_index[:,0], start_index[:,1]]  # [4,H,W]
         x1 = _x1 + ow * _offset[0]
         y1 = _y1 + oh * _offset[1]
         x2 = _x2 + ow * _offset[2]

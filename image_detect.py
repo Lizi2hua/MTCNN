@@ -8,8 +8,8 @@ if __name__ == '__main__':
     detector = detector.Detector()
     for i in os.listdir(image_path):
         with Image.open(os.path.join(image_path,i)) as im:
-            # boxes=detector.detect(im)
-            boxes=opt_detector.detect(im)
+            boxes=detector.detect(im)
+            # boxes=opt_detector.detect(im)
             print("image size:",im.size)
             draw_rect(os.path.join(image_path,i),boxes)
 
